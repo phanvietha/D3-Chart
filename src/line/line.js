@@ -3,8 +3,6 @@ import * as d3 from 'd3';
 import jsonData from '../data/coins.json';
 import 'webpack-jquery-ui/slider';
 import 'webpack-jquery-ui/css';
-import { contourDensity } from 'd3';
-
 
 const margin = { left: 80, right: 100, top: 50, bottom: 100 };
 const height = 500 - margin.top - margin.bottom;
@@ -78,14 +76,11 @@ const cleanData = (data) => {
     return filteredData;
 }
 
-
-
 const path = group.append('path')
     .attr('class', 'path')
     .attr('fill', 'none')
     .attr('stroke', 'gray')
     .attr('stroke-width', 1)
-
 
 const update = () => {
     const sliderValues = $('#date-slider').slider('values');
@@ -103,14 +98,8 @@ const update = () => {
         .x(d => xScale(d.date))
         .y(d => yScale(d['price_usd']));
 
-
     path.transition(duration()).attr('d', line(filterCoins));
-
-
-
-
 }
-
 
 const main = () => {
     coins = cleanData(jsonData)['bitcoin'];
